@@ -1,0 +1,22 @@
+.view-table{
+  width: 100%;
+  th{
+    text-align: left;
+    padding-left: 10px;
+    font-size: 16px;
+  }
+  td{
+    padding-left: 10px;
+    padding-top: 8px;
+  }
+  tr{
+    border-bottom: 1px solid #c393931f;
+  }
+  .bar-percent {
+    width: 100%;
+    background: gray;
+    display: block;
+    height: 1em;
+    border-radius: 25px;
+  }
+}

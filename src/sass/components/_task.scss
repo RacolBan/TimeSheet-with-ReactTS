@@ -1,0 +1,23 @@
+.task{
+  &-unselected{
+    border-right: 1px solid black;
+    
+  }
+  &-container{
+    height: 56vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    span {
+      width: 1.5em;
+      height: 1.5em;
+      margin-right: 10px;
+      margin-bottom: 10px;
+      cursor: pointer;
+      svg{
+        width: 1.5em;
+        height: 1.5em;
+        color: #b21613;
+      }
+    }
+  }
+}

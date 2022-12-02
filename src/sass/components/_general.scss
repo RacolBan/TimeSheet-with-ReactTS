@@ -1,0 +1,45 @@
+.general{
+  height: 62vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  .general-create-plus{
+    display: none;
+  }
+  .ant-typography{
+    font-size: 16px;
+    font-weight: 600;
+    display: inline-block;
+    line-height: 50px;
+  }
+  .ant-modal-footer{
+    position: absolute;
+    bottom: 0;
+    right: 78px;
+  }
+  .ant-col-projectType{
+    width: 52em;
+  }
+  .ant-select:not(.ant-select-customize-input) .ant-select-selector{
+    height: 50px;
+  }
+  .error{
+    padding: 6px 0;
+    width: 16em;
+    height: 2em;
+    overflow: hidden;
+    color: #b21613;
+  }
+  .row-error-date{
+    position: relative;
+    bottom: 24px;
+    .timeEnd {
+      margin-left: 24px;
+    }
+  }
+  .sao{
+    color: #b21613;
+  }
+  .ant-select-single.ant-select-show-arrow .ant-select-selection-item{
+    line-height: 46px;
+  }
+}

@@ -1,0 +1,72 @@
+.member{
+  overflow-y: scroll;
+    overflow-x: hidden;
+    height: 26em;
+    .ant-select:not(.ant-select-customize-input).ant-select-selector {
+      position: relative;
+      background-color: #fff;
+      border-radius: 2px;
+      transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+      border: none;
+      border-bottom: 1px solid gray;
+  }
+  &-unselected{
+    display: flex;
+    border-bottom: 2px solid #c3bdbd;
+    border-left: 1px solid  #c3bdbd; 
+    border-radius: 2px;
+    padding: 5px 10px;
+    .icon{
+      width: 2em;
+      span{
+        position: relative;
+        width: 46em;
+        text-align: start;
+        cursor: pointer
+      }
+      svg{
+        width: 2em;
+        height: 5em;
+      }
+    }
+    .avatar{
+      width: 5em;
+      .ant-avatar{
+        width: 5em;
+        height: 5em;
+        &-string{
+          font-size: 39px;
+          line-height: 74px;
+        }
+      }
+    }
+    .infor{
+      padding-left: 2em;
+      &-member{
+        display: flex;
+        &-h3{
+          margin-right: 1em;
+          width: 10em;
+          height: 34px;
+          font-weight: 600;
+        }
+        &-h4-type{
+          margin-right: 5px;
+          background: #e13a46;
+          width: 96px;
+          text-align: center;
+          overflow-x: hidden;
+          border-radius: 4px;
+        }
+        &-h4-level{
+          border-radius: 4px;
+          background: #fdd707;
+        }
+      }
+    }
+  }
+  > div:nth-child(odd) {
+    background: #d4cae2;
+  }
+  
+}

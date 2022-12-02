@@ -1,0 +1,21 @@
+.headerContent { 
+  display: flex;
+  justify-content: space-between;
+  &-title{
+    line-height: 36px;
+      font-size: 27px;
+      font-weight: 600;
+      color: #18aae6;
+  }
+  &-icon{
+    line-height: 42px;
+    margin-right: 10px;
+    cursor: pointer;
+    svg{
+      height: 1.5em;
+      width: 1.5em;
+      color: #0d7097;
+      
+    }
+  }
+}

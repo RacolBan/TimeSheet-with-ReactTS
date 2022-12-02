@@ -1,0 +1,15 @@
+@mixin ra($width) {
+  @media (max-width: $width) {
+      @content
+  }
+};
+@mixin re($width) {
+  @media (min-width: $width) {
+      @content
+  }
+};
+@mixin rd($width) {
+  @media (width: $width) {
+      @content
+  }
+}

@@ -1,0 +1,325 @@
+@include rd(2560px) {
+  body{
+    max-width: 2000px;
+   position: relative;
+   left: 22em;
+  }
+  .login{
+    height: 100vh;
+    position: relative;
+    &-background{
+      height: 100%;
+      width: 36%;
+      left: 45em;
+      h1{
+        font-size: 4em;
+        left: 187px;
+        top: 2em;
+      }
+      .login-form{
+        width: 94%;
+        height: 16em;
+        padding: 20px;
+        position: relative;
+        top: 18em;
+        background-color: rgb(255, 255, 255);
+        left: 1em;
+        h1{
+          position: absolute;
+          top: -3em;
+          font-size: 3em;
+          left: 271px;
+        }
+      }
+    }
+  }
+  .project{
+    height: 200vh;
+    .project-item{
+      height: 81vh;
+    }
+  }
+  .sidebar-link-project{
+    height: 4.5em;
+    line-height: 5.75em;
+    border-left: 7px solid #9aceff;
+    padding-left: 38px;
+    margin-left: 10px;
+    box-shadow: -9px 0px 0.1em 0px;
+  }
+  .project-modal {
+    .ant-modal-content{
+      height: 60em;
+      top: 10em;
+      width: 112em;
+      left: -11em;
+      .general{
+        height: 51vh;
+      }
+      .member{
+        height: 39em;
+      }
+      .task-container{
+        height: 40em;
+      }
+    }
+  }
+}
+@include ra(1440px) {
+  body{
+   left: 0;
+  }
+  .login{
+    background-color: #08AEEA;
+  background-image: linear-gradient(0deg, #08AEEA 0%, #2AF598 100%);
+  height: 100vh;
+    .login-background{
+      left: 33em;
+      h1{
+        left: 92px;
+      }
+      .login-form{
+        top: 14em;
+        h1{
+          left: 181px;
+        }
+      }
+    }
+  }
+  .project-modal{
+    left: -22em;
+    .member{
+      height: 23em;
+    }
+  }
+}
+@include ra(1366px) {
+  body{
+    left: 0;
+   }
+   .login{
+     background-color: #08AEEA;
+   background-image: linear-gradient(0deg, #08AEEA 0%, #2AF598 100%);
+   height: 100vh;
+     .login-background{
+       left: 32em;
+       h1{
+         left: 92px;
+       }
+       .login-form{
+         top: 14em;
+         h1{
+           left: 172px;
+         }
+       }
+     }
+   }
+}
+@include ra(1024px) {
+  .login{
+    background-color: #08AEEA;
+  background-image: linear-gradient(0deg, #08AEEA 0%, #2AF598 100%);
+  height: 100vh;
+    .login-background{
+      left: 23em;
+      h1{
+        font-size: 3em;
+        left: 60px;
+      }
+      .login-form{
+        top: 6em;
+        h1{
+          position: absolute;
+          top: -1em;
+          font-size: 34px;
+          left: 117px;
+        }
+      }
+    }
+  }
+  .project {
+    .project-handle .handle-project-action .search .ant-input-affix-wrapper {
+      width: 17em;
+      left: 7em;
+    }
+    .project-handle .handle-project-action .ant-select-single.ant-select-lg:not(.ant-select-customize-input) .ant-select-selector{
+      left: 1em;
+    }
+  }
+  .project-modal{
+    left: -11em;
+    .ant-modal-content{
+      width: 60em;
+    }
+    .member{
+      height: 19em;
+    }
+    .task-container{
+      height: 22em;
+    }
+  }
+}
+@include ra(768px) {
+  .login{
+    .login-background{
+      left: 17em;
+      width: 39%;
+      h1{
+        font-size: 30px;
+        left: 66px;
+      }
+      .login-form{
+        top: 7em;
+        left: 9px;
+        h1{
+          position: absolute;
+          top: -2em;
+          font-size: 24px;
+          left: 108px;
+        }
+      }
+    }
+  }
+  .project{
+    width: 97vw;
+    left: -15em;
+  }
+  .project-modal{
+    left: -8em;
+    .team-pagination{
+      left: 12em;
+      top: 3em;
+    }
+    .ant-modal-content{
+      width: 54em;
+      .ant-modal-body .btn-modal-create{
+        height: 45px;
+        width: 87px;
+      }
+      .ant-modal-footer{
+        right: -43px;
+        .ant-btn.ant-btn-default{
+          height: 45px;
+          width: 87px;
+        }
+      }
+    }
+    .member{
+      .member-unselected {
+        padding: 0 10px;
+      }
+    }
+    .task-container{
+      .taskItem{
+        width: 157px; 
+        height: 2em;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+    }
+  }
+  .sidebar{
+    display:none;
+  }
+}
+
+@include ra(425px) {
+  .login{
+    .login-background{
+      left: 53px;
+      width: 72%;
+      h1{
+        font-size: 30px;
+        left: 66px;
+      }
+      .login-form{
+        top: 7em;
+        left: 9px;
+        h1{
+          position: absolute;
+          top: -2em;
+          font-size: 24px;
+          left: 108px;
+        }
+      }
+    }
+  }
+  .header{
+    width: 100vh;
+  }
+  .project{
+    height: 119vh;
+      left: -10em;
+      width: 98vh;
+      .project-item{
+        height: 91vh;
+      }
+      .project-handle .handle-project-action .search .ant-input-affix-wrapper{
+        width: 10em;
+        left: 9em;
+        height: 3em;
+      }
+      .project-handle .handle-project-action .ant-select-single.ant-select-lg:not(.ant-select-customize-input) .ant-select-selector{
+        height: 43px;
+        width: 11em;
+        left: 3em;
+        .ant-select-selection-item{
+          line-height: 22px;
+        }
+      }
+      .project-handle .handle-project-action .ant-btn-block{
+        height: 41px;
+        width: 9em;
+      }
+      .handle-project-action-text{
+        display: none;
+      }
+  }
+  .project-modal{
+    left: 0;
+    .ant-modal-content{
+      width: 29em;
+      .ant-modal-body .ant-btn-primary{
+        height: 28px;
+        width: 2em;
+        left: 5em;
+        top: 13px;
+      }
+      .general-create-plus{
+        display: block;
+        position: relative;
+        top: -24px;
+        font-size: 18px;
+        font-weight: 700;
+        left: 1px;
+      }
+      .general-create-text{
+        display: none;
+      }
+    }
+  }
+  
+}
+@include ra(320px) {
+  .login{
+    .login-background{
+      left: 1em;
+      width: 92%;
+      h1{
+        font-size: 30px;
+        left: 66px;
+      }
+      .login-form{
+        top: 7em;
+        left: 9px;
+        h1{
+          position: absolute;
+          top: -2em;
+          font-size: 24px;
+          left: 108px;
+        }
+      }
+    }
+  }
+}
