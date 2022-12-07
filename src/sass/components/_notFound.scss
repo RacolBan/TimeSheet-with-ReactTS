@@ -1,0 +1,42 @@
+.notFound{
+  text-align: start;
+  position: relative;
+  top: 10em;
+  left: 10em;
+  > h1:nth-child(1){
+    color: #c90b0b;
+    font-weight: 700;
+    font-size: 5em;
+  }
+  > h1:nth-child(2){
+    color: #c90b0b;
+    font-weight: 700;
+    font-size: 3em;
+    width: 10em;
+  }
+  button{
+    position: absolute;
+    top: 13em;
+    right: 42em;
+    display: block;
+    height: 4em;
+    border-radius: 25px;
+    width: 10em;
+    background: #000000;
+    color: white;
+    cursor: pointer;
+    span{
+      font-size: 18px;
+      font-weight: 500;
+    }
+  }
+  > span{
+    position: absolute;
+    top: 8em;
+    right: 45em;
+    svg{
+      height: 4em;
+      width: 4em;
+    }
+  }
+}

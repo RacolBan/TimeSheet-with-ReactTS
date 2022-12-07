@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, memo } from 'react';
 import moment from 'moment';
 import { EFilterTime } from '../../redux/project/enum.user';
 import { getTimeSheetStatisticTasksThunk, getTimeSheetStatisticTeamsThunk } from '../../redux/project/thunks';
@@ -8,9 +8,9 @@ import { useSelector } from 'react-redux';
 import { getViewProject } from '../../redux/project/selector';
 import { Modal } from 'antd';
 import { closeViewProject } from '../../redux/project/slice';
-import ViewProjectTab from './viewTab/ViewProjectTabs';
+import ViewProjectTab from './components/viewTab/ViewProjectTabs';
 import ViewCustomTimeModal from './components/ViewCustomTimeModal';
-export default function ViewModal (): JSX.Element {
+function ViewModal (): JSX.Element {
   const handleCloseView = (): void => {
     dispatch(closeViewProject());
   };
@@ -146,3 +146,4 @@ export default function ViewModal (): JSX.Element {
     </Modal>
   );
 }
+export default memo(ViewModal);

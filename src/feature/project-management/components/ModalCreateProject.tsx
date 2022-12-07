@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/strict-boolean-expressions */
-import React, { useEffect } from 'react';
+import React, { memo, useEffect } from 'react';
 import { Modal, Button } from 'antd';
 import { useForm, FormProvider } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -7,14 +7,15 @@ import * as yup from 'yup';
 import { IProjectForm } from '../../../redux/project/interface';
 import { getOpenCreateModal, getProjectEdit, getSelectedTaskList, memberSelectedRemaining } from '../../../redux/project/selector';
 import { useSelector } from 'react-redux';
-import { EProjectType, EStatusProjectForm } from '../../../redux/project/enum.user';
-import { addProjectThunk, editProjectThunk, getAllProject } from '../../../redux/project/thunks';
+import { EMemberType, EProjectType, EStatusProjectForm } from '../../../redux/project/enum.user';
+import { addProjectThunk, getAllUsersThunk, getTaskListThunk, editProjectThunk, getAllProject, getProjectEditing } from '../../../redux/project/thunks';
 import { useAppDispatch, useToast } from '../../../hooks/useToast';
 import { changeCreateOpenModal, clearSelectedTaskList, clearSelectedUserList } from '../../../redux/project/slice';
 import LinkTab from './LinkTab';
-import { Outlet, useNavigate } from 'react-router-dom';
+import { Outlet, useNavigate, useParams } from 'react-router-dom';
+import { getAllCustomer } from '../../../redux/customer/thunks';
 
-export default function ModalCreateProject (): JSX.Element {
+function ModalCreateProject (): JSX.Element {
   const isOpen = useSelector(getOpenCreateModal);
   const dispatch = useAppDispatch();
   const schema = yup.object().shape({
@@ -24,7 +25,7 @@ export default function ModalCreateProject (): JSX.Element {
     timeStart: yup.date().required(),
     timeEnd: yup.date().required().min(
       yup.ref('timeStart'),
-      "end date can't be before start date"
+      "end date can't be before started"
     ),
     projectType: yup.number().required('ProjectType is required')
   });
@@ -41,6 +42,7 @@ export default function ModalCreateProject (): JSX.Element {
     komuChannelId: ''
   };
   const listMemberSelected = useSelector(memberSelectedRemaining);
+  const findPM = listMemberSelected.find(member => member.memberType === EMemberType.ProjectManager);
   const selectedtaskList = useSelector(getSelectedTaskList);
   const taskListPost = selectedtaskList.map((task) => ({
     taskId: task.id,
@@ -69,11 +71,15 @@ export default function ModalCreateProject (): JSX.Element {
     }
   }, [errors]);
   const onSubmit = (data: IProjectForm): void => {
-    console.log(data);
     if (selectedtaskList.length === 0) {
       useToast('You must have at least one task', 2);
+      navigate('/App/project/Create/task');
     } else if (listMemberSelected.length === 0) {
       useToast('You must have at least one member', 2);
+      navigate('/App/project/Create/team');
+    } else if (!findPM) {
+      useToast('You must have at least one PM', 2);
+      navigate('/App/project/Create/team');
     } else {
       const project = {
         name: data.name,
@@ -96,7 +102,7 @@ export default function ModalCreateProject (): JSX.Element {
       } else {
         void dispatch(addProjectThunk(project));
       }
-      void dispatch(getAllProject('0'));
+      void dispatch(getAllProject({ status: '0', search: null }));
       handleCloseModal();
     }
   };
@@ -108,13 +114,23 @@ export default function ModalCreateProject (): JSX.Element {
     dispatch(changeCreateOpenModal());
     navigate('/App/project');
   };
+  const { id } = useParams();
+  useEffect(() => {
+    if (id !== undefined) {
+      void dispatch(getProjectEditing(Number(id)));
+      void dispatch(getAllUsersThunk());
+      void dispatch(getAllCustomer());
+      void dispatch(getTaskListThunk());
+      navigate(`/App/project/Edit/${id}`);
+    }
+  }, [id]);
   return (
     <FormProvider {...methods} >
       <form id='myform' onSubmit={handleSubmit(onSubmit)} >
       <Modal
         onCancel={handleCloseModal}
         className='project-modal'
-        title={ projectEditing != null ? 'Edit Project' : 'Create Project'}
+        title={ projectEditing != null ? `Edit Project: ${projectEditing.name}` : 'Create Project'}
         open={ isOpen }
         footer={[
           <Button key='back' onClick={() => handleCloseModal()} >Cancel</Button>
@@ -128,3 +144,4 @@ export default function ModalCreateProject (): JSX.Element {
     </FormProvider>
   );
 }
+export default memo(ModalCreateProject);

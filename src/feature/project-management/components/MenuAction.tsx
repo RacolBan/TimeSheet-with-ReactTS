@@ -1,5 +1,5 @@
 import { EditFilled, EyeOutlined, ScissorOutlined, SwapOutlined } from '@ant-design/icons';
-import React from 'react';
+import React, { memo } from 'react';
 import MenuItem from '../../../components/MenuItem';
 interface Props {
   handleOpenModalEdit: () => void
@@ -7,7 +7,7 @@ interface Props {
   handleOpenDialog: (a: number) => void
   status: number
 }
-export default function MenuAction ({ handleOpenModalEdit, handleOpenView, handleOpenDialog, status }: Props): JSX.Element {
+function MenuAction ({ handleOpenModalEdit, handleOpenView, handleOpenDialog, status }: Props): JSX.Element {
   return (
     <div className='action-background'>
       <div onClick={handleOpenModalEdit}>
@@ -25,3 +25,4 @@ export default function MenuAction ({ handleOpenModalEdit, handleOpenView, handl
     </div>
   );
 }
+export default memo(MenuAction);

@@ -52,7 +52,7 @@
       height: 60em;
       top: 10em;
       width: 112em;
-      left: -11em;
+      left: -38em;
       .general{
         height: 51vh;
       }
@@ -280,11 +280,53 @@
     left: 0;
     .ant-modal-content{
       width: 29em;
-      .ant-modal-body .ant-btn-primary{
-        height: 28px;
-        width: 2em;
-        left: 5em;
-        top: 13px;
+      .ant-modal-body {
+        padding: 7px 0 0 0;
+        .linkTab-hide{
+          display: block;
+          a{
+            display: inline-block;
+            height: 2em;
+            width: 25%;
+            text-align: center;
+            cursor: pointer;
+            color: #efb310;
+          }
+        }
+        .linkTab{
+          display: none;
+        }
+        .general{
+          .ant-select .ant-select-single .ant-select-show-arrow{
+            padding: 0px 0px 0px 0;
+            left: 45px;
+          }
+          &-name{
+            .ant-input{
+              width: 69%;
+              margin: 0px 0px 0px 44px;
+            }
+          }
+          &-code {
+            .ant-input{
+              width: 120%;
+              margin: 0px 0px 0px 52px;
+            }
+          }
+          .row-date{
+            flex-direction: column;
+            .time{
+              width: 190%;
+              margin: 0px 0px 0px 103px;
+            }
+          }
+        }
+        .ant-btn-primary{
+          height: 28px;
+          width: 2em;
+          left: 5em;
+          top: 13px;
+        }
       }
       .general-create-plus{
         display: block;

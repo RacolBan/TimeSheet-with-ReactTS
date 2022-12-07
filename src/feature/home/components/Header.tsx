@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { Button } from 'antd';
 import logo from '../../../assets/images/logo.png';
 import { NavLink } from 'react-router-dom';
 interface Props {
   onClick: () => void
 }
-export default function Header ({ onClick }: Props): JSX.Element {
+function Header ({ onClick }: Props): JSX.Element {
   return (
     <div className='header' >
       <div className= 'header-logo'>
@@ -22,3 +22,4 @@ export default function Header ({ onClick }: Props): JSX.Element {
     </div>
   );
 }
+export default memo(Header);

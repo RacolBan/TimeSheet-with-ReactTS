@@ -1,4 +1,4 @@
-import { ICustomerState } from './customer.interface';
+import { ICustomerState } from './interface';
 import { createSlice } from '@reduxjs/toolkit';
 import { getAllCustomer, postCustomer } from './thunks';
 const initialState: ICustomerState = {

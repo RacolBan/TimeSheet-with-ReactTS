@@ -1,16 +1,21 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axiosClient from '../../api/api.config';
-import { ILogin } from './login.interface';
+import { useToast } from '../../hooks/useToast';
+import { ILogin } from './interface';
 
 export const loginThunk = createAsyncThunk(
   'auth/login',
   async (user: ILogin) => {
-    const { data } = await axiosClient.post('api/TokenAuth/Authenticate', {
-      userNameOrEmailAddress: user.username,
-      password: user.password,
-      rememberClient: user.rememberClient
-    });
-    return data.result;
+    try {
+      const { data } = await axiosClient.post('api/TokenAuth/Authenticate', {
+        userNameOrEmailAddress: user.username,
+        password: user.password,
+        rememberClient: user.rememberClient
+      });
+      return data.result;
+    } catch (error) {
+      useToast(error.response.data.error.details, 3);
+    }
   }
 );
 

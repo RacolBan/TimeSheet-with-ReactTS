@@ -35,7 +35,7 @@ const memberRemaining = createSelector(getMemberList, getFilterUnSelectedMember,
     return (member.branch === filterUnSelected.branch || filterUnSelected.branch === EBranchUser.All) &&
     (member.type === filterUnSelected.type || filterUnSelected.type === ETypeUser.All) &&
     member.name.toLowerCase().includes(filterUnSelected.search) &&
-    (index >= (page - 1) * 100 && index <= page * 100 - 1);
+    (index >= (page - 1) * 10 && index <= page * 10 - 1);
   });
 });
 
@@ -47,4 +47,4 @@ const memberSelectedRemaining = createSelector(getSelectedUserList, getSearchSel
     return member.memberType !== 3 && member.name.includes(search);
   });
 });
-export { projectRemaninng, getfilterStatus, memberRemaining, getSelectedUserList, memberSelectedRemaining, getSelectedTaskList, getUnSelectedTaskList, getIsAllBillable, getIsKomuNoti, getKomuChannelId, getIsLoading, getProjectEdit, getViewProject, getTimeSheetTask, getTimeSheetTeam, getOpenCreateModal, getPage };
+export { projectRemaninng, getfilterStatus, memberRemaining, getSelectedUserList, memberSelectedRemaining, getSelectedTaskList, getUnSelectedTaskList, getIsAllBillable, getIsKomuNoti, getKomuChannelId, getIsLoading, getProjectEdit, getViewProject, getTimeSheetTask, getTimeSheetTeam, getOpenCreateModal, getPage, getSearchInput };

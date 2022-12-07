@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { Typography, Col, Row } from 'antd';
 import { IProject } from '../../../redux/project/interface';
 import ProjectItem from './ProjectItem';
 interface Props {
   projectListByCustomer: IProject[]
 }
-export default function ProjectByClient ({ projectListByCustomer }: Props): JSX.Element {
+function ProjectByClient ({ projectListByCustomer }: Props): JSX.Element {
   return (
     <Row>
       <Col span={24} className='row-client' >
@@ -21,3 +21,4 @@ export default function ProjectByClient ({ projectListByCustomer }: Props): JSX.
     </Row>
   );
 }
+export default memo(ProjectByClient);

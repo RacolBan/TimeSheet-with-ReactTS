@@ -1,5 +1,5 @@
 /* eslint-disable no-void */
-import React, { useState } from 'react';
+import React, { memo, useCallback, useState } from 'react';
 import { Typography, Col, Row } from 'antd';
 import { IProject } from '../../../redux/project/interface';
 import moment from 'moment';
@@ -13,7 +13,7 @@ import { useNavigate } from 'react-router-dom';
 interface Props {
   project: IProject
 }
-export default function ProjectItem ({ project }: Props): JSX.Element {
+function ProjectItem ({ project }: Props): JSX.Element {
   const [isOpen, setIsOpen] = useState(false);
   const [typeModal, setTypeModal] = useState<number | null>(null);
   let pms = '';
@@ -56,13 +56,13 @@ export default function ProjectItem ({ project }: Props): JSX.Element {
   const handleOpenView = (): void => {
     dispatch(changeViewProject((project.id).toString()));
   };
-  const handleOpenDialog = (type: number): void => {
+  const handleOpenDialog = useCallback((type: number): void => {
     setIsOpen(true);
     setTypeModal(type);
-  };
-  const handleCancelDialog = (): void => {
+  }, []);
+  const handleCancelDialog = useCallback((): void => {
     setIsOpen(false);
-  };
+  }, []);
 
   const handleConfirmDialog = (): void => {
     setIsOpen(false);
@@ -92,9 +92,10 @@ export default function ProjectItem ({ project }: Props): JSX.Element {
         </div>
       </Col>
       <ConfirmModal open={isOpen} title={typeModal === 0
-        ? (project.status === 0 ? 'Deactive Item' : 'Active Item')
-        : 'Delete Item' }
+        ? (project.status === 0 ? `Deactive Item: ${project.name}` : `Active Item: ${project.name}`)
+        : `Delete Item: ${project.name}` }
       handleOk={handleConfirmDialog} handleCancel={handleCancelDialog}/>
     </Row>
   );
 }
+export default memo(ProjectItem);

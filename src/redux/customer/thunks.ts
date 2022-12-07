@@ -1,6 +1,6 @@
 import axiosClient from '../../api/api.config';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { ICustomerPost } from './customer.interface';
+import { ICustomerPost } from './interface';
 import { useToast } from '../../hooks/useToast';
 export const getAllCustomer = createAsyncThunk('getAll', async () => {
   const { data } = await axiosClient.get('/api/services/app/Customer/GetAll');

@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Row, Col, Skeleton } from 'antd';
-import { HeaderContent } from '../../components/HeaderContent';
+import HeaderContent from './components/HeaderContent';
 import { useAppDispatch } from '../../hooks/useToast';
 import { useSelector } from 'react-redux';
-import { getAllProject, getAllUsersThunk, getTaskListThunk } from '../../redux/project/thunks';
+import { getAllUsersThunk, getTaskListThunk } from '../../redux/project/thunks';
 import CreateAndFilterProject from './components/CreateAndFilterProject';
-import { getfilterStatus, getIsLoading, projectRemaninng } from '../../redux/project/selector';
+import { getIsLoading, projectRemaninng } from '../../redux/project/selector';
 import { IProject } from '../../redux/project/interface';
 import ProjectByClient from './components/ProjectByClient';
 
@@ -14,16 +14,11 @@ import { getAllCustomer } from '../../redux/customer/thunks';
 import ViewModal from '../view/ViewModal';
 export default function Project (): JSX.Element {
   const dispatch = useAppDispatch();
-  const filterStatus = useSelector(getfilterStatus);
   const projectList = useSelector(projectRemaninng);
   const isLoading = useSelector(getIsLoading);
   const [loadingBySearch, setLoadingBySearch] = useState(false);
-  const handleChangeFilterStatus = (e: string): void => {
-    void dispatch(getAllProject(e));
-  };
   useEffect(() => {
     void dispatch(getAllUsersThunk());
-    void dispatch(getAllProject('0'));
     void dispatch(getAllCustomer());
     void dispatch(getTaskListThunk());
   }, []);
@@ -48,8 +43,6 @@ export default function Project (): JSX.Element {
       <Row className="project-handle">
         <Col span={24}>
           <CreateAndFilterProject
-            filterStatus={filterStatus}
-            handleChangeFilterStatus= {handleChangeFilterStatus}
             setLoadingBySearch={setLoadingBySearch}
           />
         </Col>

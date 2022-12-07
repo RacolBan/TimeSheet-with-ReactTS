@@ -3,43 +3,72 @@ import axiosClient from '../../api/api.config';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { IGetTimeSheetProject, IProjectForm } from './interface';
 import { useToast } from '../../hooks/useToast';
-
-export const getAllProject = createAsyncThunk('getAllProject', async (id: string) => {
-  const { data } = await axiosClient.get(`/api/services/app/Project/GetAll?status=${id}`);
-  return data.result;
-});
+interface Query {
+  status: string | null
+  search: string | null
+}
+export const getAllProject = createAsyncThunk('getAllProject',
+  async (query: Query) => {
+    try {
+      const { data } = await axiosClient.get('/api/services/app/Project/GetAll', {
+        params: query
+      });
+      return data.result;
+    } catch (error) {
+      useToast(error.response.data.error.message, 3);
+    }
+  });
 export const activeProjectThunk = createAsyncThunk(
   'projects/activeProject',
   async (id: number) => {
-    const { data } = await axiosClient.post('/api/services/app/Project/Active', {
-      id
-    });
-    return { id, data };
+    try {
+      const { data } = await axiosClient.post('/api/services/app/Project/Active', {
+        id
+      });
+      useToast('Item is active', 1);
+      return { id, data };
+    } catch (error) {
+      useToast(error.response.data.error.message, 3);
+    }
   }
 );
 export const getTaskListThunk = createAsyncThunk(
   'tasks/getTaskList',
   async () => {
-    const { data } = await axiosClient.get('/api/services/app/Task/GetAll');
-    return data.result;
+    try {
+      const { data } = await axiosClient.get('/api/services/app/Task/GetAll');
+      return data.result;
+    } catch (error) {
+      useToast(error.response.data.error.message, 3);
+    }
   }
 );
 export const deActiveProjectThunk = createAsyncThunk(
   'projects/deActiveProject',
   async (id: number) => {
-    const { data } = await axiosClient.post('/api/services/app/Project/Inactive', {
-      id
-    });
-    return { id, data };
+    try {
+      const { data } = await axiosClient.post('/api/services/app/Project/Inactive', {
+        id
+      });
+      useToast('Item is inactive', 1);
+      return { id, data };
+    } catch (error) {
+      useToast(error.response.data.error.message, 3);
+    }
   }
 );
 export const deleteProjectThunk = createAsyncThunk(
   'projects/deleteProject',
   async (id: number) => {
-    const { data } = await axiosClient.delete(
-      `/api/services/app/Project/Delete?Id=${id}`
-    );
-    return { id, data };
+    try {
+      const { data } = await axiosClient.delete(
+        `/api/services/app/Project/Delete?Id=${id}`
+      );
+      useToast('delete sucessfully', 1);
+      return { id, data };
+    } catch (error) {
+      useToast(error.response.data.error.message, 3);
+    }
   }
 );
 
@@ -85,28 +114,40 @@ export const editProjectThunk = createAsyncThunk(
 export const getProjectEditing = createAsyncThunk(
   'projects/getProject',
   async (id: number) => {
-    const { data } = await axiosClient.get(
-      `/api/services/app/Project/Get?input=${id}`
-    );
-    return data.result;
+    try {
+      const { data } = await axiosClient.get(
+        `/api/services/app/Project/Get?input=${id}`
+      );
+      return data.result;
+    } catch (error) {
+      useToast(error.response.data.error.message, 3);
+    }
   }
 );
 export const getTimeSheetStatisticTasksThunk = createAsyncThunk(
   'projects/getTimeSheetStatisticTasks',
   async (project: IGetTimeSheetProject) => {
-    const response = await axiosClient.get(
-      `/api/services/app/TimeSheetProject/GetTimeSheetStatisticTasks?projectId=${project.id}&startDate=${project.start}&endDate=${project.end}`
-    );
-    return response.data.result;
+    try {
+      const response = await axiosClient.get(
+        `/api/services/app/TimeSheetProject/GetTimeSheetStatisticTasks?projectId=${project.id}&startDate=${project.start}&endDate=${project.end}`
+      );
+      return response.data.result;
+    } catch (error) {
+      useToast(error.response.data.error.message, 3);
+    }
   }
 );
 
 export const getTimeSheetStatisticTeamsThunk = createAsyncThunk(
   'projects/getTimeSheetStatisticTeams',
   async (project: IGetTimeSheetProject) => {
-    const response = await axiosClient.get(
-      `/api/services/app/TimeSheetProject/GetTimeSheetStatisticTeams?projectId=${project.id}&startDate=${project.start}&endDate=${project.end}`
-    );
-    return response.data.result;
+    try {
+      const response = await axiosClient.get(
+        `/api/services/app/TimeSheetProject/GetTimeSheetStatisticTeams?projectId=${project.id}&startDate=${project.start}&endDate=${project.end}`
+      );
+      return response.data.result;
+    } catch (error) {
+      useToast(error.response.data.error.message, 3);
+    }
   }
 );

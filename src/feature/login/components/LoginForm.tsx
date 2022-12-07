@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { Button, Checkbox, Form, Input } from 'antd';
-import { ILogin } from '../../../redux/auth/login.interface';
+import { ILogin } from '../../../redux/auth/interface';
 import { useAppDispatch } from '../../../hooks/useToast';
 import { loginThunk } from '../../../redux/auth/thunks';
 

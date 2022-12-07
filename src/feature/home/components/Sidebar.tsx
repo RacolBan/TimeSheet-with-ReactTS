@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, memo } from 'react';
 import { Avatar, Typography } from 'antd';
 import picture from '../../../assets/images/dsa.png';
-import { IUserInfo } from '../../../redux/auth/login.interface';
+import { IUserInfo } from '../../../redux/auth/interface';
 import { useAppDispatch } from '../../../hooks/useToast';
 import { getUserInforThunk } from '../../../redux/auth/thunks';
 import { AppstoreAddOutlined } from '@ant-design/icons';
@@ -9,7 +9,7 @@ import SLink from '../../../components/Link';
 interface Props {
   userInfo: IUserInfo
 }
-export default function Sidebar ({ userInfo }: Props): JSX.Element {
+function Sidebar ({ userInfo }: Props): JSX.Element {
   const dispatch = useAppDispatch();
   const getUser = async (): Promise<void> => {
     await dispatch(getUserInforThunk());
@@ -32,3 +32,4 @@ export default function Sidebar ({ userInfo }: Props): JSX.Element {
     </div>
   );
 }
+export default memo(Sidebar);

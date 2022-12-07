@@ -20,4 +20,11 @@
       }
     }
   }
+  .taskItem{
+    width: 157px; 
+    height: 2em;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
 }

@@ -1,9 +1,7 @@
 import { EBranchUser, EMemberType, EStatusProject, ETypeUser, ISelectedTask } from './enum.user';
 import { createSlice } from '@reduxjs/toolkit';
 import { IProjectReducer, ISelectedUser } from './interface';
-import { deleteProjectThunk, getAllProject, getAllUsersThunk, getProjectEditing, getTaskListThunk, getTimeSheetStatisticTasksThunk, getTimeSheetStatisticTeamsThunk } from './thunks';
-import { useToast } from '../../hooks/useToast';
-
+import { activeProjectThunk, deActiveProjectThunk, deleteProjectThunk, getAllProject, getAllUsersThunk, getProjectEditing, getTaskListThunk, getTimeSheetStatisticTasksThunk, getTimeSheetStatisticTeamsThunk } from './thunks';
 const initialState: IProjectReducer = {
   openCreateModal: false,
   projectList: [],
@@ -137,9 +135,6 @@ export const projectSlice = createSlice({
       .addCase(getAllProject.fulfilled, (state, action) => {
         state.isLoading = false;
         state.projectList = action.payload;
-      })
-      .addCase(getAllProject.rejected, () => {
-        useToast('Get project failed', 3);
       });
     builder
       .addCase(getAllUsersThunk.fulfilled, (state, action) => {
@@ -152,12 +147,22 @@ export const projectSlice = createSlice({
     builder
       .addCase(deleteProjectThunk.fulfilled, (state, action) => {
         state.projectList = state.projectList.filter(
-          (project) => project.id !== action.payload.id
+          (project) => project.id !== (action.payload?.id)
         );
-        useToast('delete sucessfully', 1);
-      })
-      .addCase(deleteProjectThunk.rejected, () => {
-        useToast('delete failed', 3);
+      });
+    builder
+      .addCase(activeProjectThunk.fulfilled, (state, action) => {
+        state.projectList = state.projectList.filter(
+          (project) => project.status !== action.payload?.data.status
+        );
+        console.log('a');
+      });
+    builder
+      .addCase(deActiveProjectThunk.fulfilled, (state, action) => {
+        state.projectList = state.projectList.filter(
+          (project) => project.status !== action.payload?.data.status
+        );
+        console.log('b');
       });
     builder
       .addCase(getProjectEditing.fulfilled, (state, action) => {
@@ -176,9 +181,6 @@ export const projectSlice = createSlice({
             state.userList = state.userList.filter(unSelectedUser => unSelectedUser.id !== user.id);
           }
         });
-      })
-      .addCase(getProjectEditing.rejected, () => {
-        useToast('Not get project to edit', 3);
       });
     builder.addCase(getTimeSheetStatisticTasksThunk.fulfilled, (state, action) => {
       state.timeSheetStatisticTasks = action.payload;
